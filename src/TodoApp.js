@@ -7,6 +7,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import moment from "moment";
 import {Login} from "./component/Login";
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
 
 export class TodoApp extends Component{
 	constructor(props) {
@@ -17,7 +21,7 @@ export class TodoApp extends Component{
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-	render(){
+	render(){    
 		return(
 			<div className="App">
           <header className="App-header">
@@ -27,44 +31,46 @@ export class TodoApp extends Component{
 
           <br/>
           <br/>
-          <form onSubmit={this.handleSubmit} className="todo-form">
-              <h3>New TODO</h3>
-              <label htmlFor="text" className="right-margin">
-                  Text:
-              </label>
+          <Card onSubmit={this.handleSubmit} className="todo-form">
+            <CardContent>
+                <h3>New TODO</h3>
+                <label htmlFor="text" className="right-margin">
+                    Text:
+                </label>
 
-              <input
-                  id="text"
-                  onChange={this.handleTextChange}
-                  value={this.state.text}>
-              </input>
+                <TextField
+                    id="text"
+                    onChange={this.handleTextChange}
+                    value={this.state.text}>
+                </TextField>
 
-              <br/>
-              <br/>
-              <label htmlFor="priority" className="right-margin">
-                  Priority:
-              </label>
+                <br/>
+                <br/>
+                <label htmlFor="priority" className="right-margin">
+                    Priority:
+                </label>
 
-              <input
-                  id="priority"
-                  type="number"
-                  onChange={this.handlePriorityChange}
-                  value={this.state.priority}>
-              </input>
-              <br/>
-              <br/>
+                <TextField
+                    id="priority"
+                    type="number"
+                    onChange={this.handlePriorityChange}
+                    value={this.state.priority}>
+                </TextField>
+                <br/>
+                <br/>
 
-              <DatePicker
-                  id="due-date"
-                  selected={this.state.dueDate}
-                  placeholderText="Due date"
-                  onChange={this.handleDateChange}>
-              </DatePicker>
-              <br/>
-              <Button>
-                  Add #{this.state.items.length + 1}
-              </Button>
-          </form>
+                <DatePicker
+                    id="due-date"
+                    selected={this.state.dueDate}
+                    placeholderText="Due date"
+                    onChange={this.handleDateChange}>
+                </DatePicker>
+                <br/>
+                <Button onClick={this.handleSubmit}>
+                    Add #{this.state.items.length + 1}
+                </Button>
+              </CardContent>
+            </Card>
           <br/>
           <br/>
           <TodoList todoList={this.state.items}/>
